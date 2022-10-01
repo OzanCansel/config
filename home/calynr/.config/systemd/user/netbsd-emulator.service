@@ -1,0 +1,17 @@
+[Unit]
+Description=Runs netbsd on qemu emulator
+
+[Service]
+Type=simple
+ExecStart=/bin/env bash -c '\
+qemu-system-x86_64 \
+-m 8192 \
+-drive if=virtio,file=/home/calynr/qemu/netbsd-disk.qcow2,format=qcow2 \
+-netdev user,id=mynet0,hostfwd=tcp:127.0.0.1:2222-:22 \
+-device virtio-net,netdev=mynet0 \
+-smp 2 \
+-nographic \
+'
+
+[Install]
+WantedBy=multi-user.target

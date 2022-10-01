@@ -1,0 +1,48 @@
+general {
+        output_format = "i3bar"
+        colors = true
+        interval = 5
+}
+
+order += "volume master"
+order += "ethernet eno1"
+order += "cpu_usage"
+order += "memory"
+order += "disk /"
+order += "read_file uptime"
+order += "tztime local"
+order += "tztime utc"
+
+volume master {
+        format = "♪: %volume"
+        format_muted = "♪: muted (%volume)"
+        device = "default"
+}
+
+ethernet eno1 {
+        format_up = "E: %ip (%speed)"
+        format_down = "E: down"
+}
+
+tztime local {
+        format = "%Y-%m-%d %H:%M:%S TR"
+}
+
+tztime utc {
+	format = "%Y-%m-%d %H:%M:%S %Z"
+	timezone = "UTC"
+}
+
+cpu_usage {
+	format = "CPU : %usage"
+}
+
+memory {
+        format = "%used/%available RAM"
+        threshold_degraded = "20%"
+        format_degraded = "MEMORY: %free"
+}
+
+disk "/" {
+        format = "%used/%free DISK"
+}
